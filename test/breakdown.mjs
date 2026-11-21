@@ -2,9 +2,12 @@
 // the answers. Prints CPU milliseconds per stage, so an optimisation is aimed at the stage that costs.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const { run } = await import(process.argv[2] ?? '../repo/solve.js');
-const IN = process.argv[3] ?? '/home/ilham/work/csv/csv-reader-speed-01-run-20261121-kit/practice/input';
+// The practice instance sits beside this repository, in the unpacked kit: pass its input directory as the
+// second argument if it lives somewhere else.
+const IN = process.argv[3] ?? fileURLToPath(new URL('../../csv-reader-speed-01-run-20261121-kit/practice/input', import.meta.url));
 const OUT = process.argv[4] ?? '/tmp/breakdown.json';
 
 const stage = [];

@@ -1,0 +1,16 @@
+{
+  "name": "csv-reader-fast",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A faster drop-in replacement for csv-reader 1.0.0: the same answer, byte for byte",
+  "scripts": {
+    "test": "node test/check.mjs",
+    "test:deep": "node test/check.mjs --fuzz 20000 --seed 2",
+    "bench": "node --expose-gc test/bench.mjs --reps 5",
+    "start": "node main.ts"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}

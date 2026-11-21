@@ -130,7 +130,7 @@ console.log(`\n${'corpus'.padEnd(20)} ${'chars'.padStart(10)} ${'ref cpu'.padSta
 for (const r of rows) {
   const mb = r.chars / 1048576;
   console.log(
-    `${r.label.padEnd(20)} ${String(r.chars).padStart(10)} ${(r.baseMs.toFixed(0) + 'ms').padStart(9)} ${(r.fastMs.toFixed(0) + 'ms').padStart(9)} ${(r.speedup.toFixed(2) + 'x').padStart(8)} ${(r.baseWall.toFixed(0) + 'ms').padStart(9)} ${(r.fastWall.toFixed(0) + 'ms').padStart(9)} ${(mb / (r.fastCpu / 1000)).toFixed(1).padStart(7)}`,
+    `${r.label.padEnd(20)} ${String(r.chars).padStart(10)} ${(r.baseMs.toFixed(0) + 'ms').padStart(9)} ${(r.fastMs.toFixed(0) + 'ms').padStart(9)} ${(r.speedup.toFixed(2) + 'x').padStart(8)} ${(r.baseWall.toFixed(0) + 'ms').padStart(9)} ${(r.fastWall.toFixed(0) + 'ms').padStart(9)} ${(mb / (r.fastMs / 1000)).toFixed(0).padStart(7)}`,
   );
 }
 
@@ -143,5 +143,5 @@ if (global.gc) {
   const before = process.memoryUsage().heapUsed;
   fast(practice[0].input);
   const after = process.memoryUsage().heapUsed;
-  console.log(`heap growth over the largest case: ${((after - before) / 1048576).toFixed(1)} MiB (peak RSS ${(process.memoryUsage().rss / 1048576).toFixed(0)} MiB)`);
+  console.log(`heap growth over the largest case: ${((after - before) / 1048576).toFixed(1)} MiB (rss ${(process.memoryUsage().rss / 1048576).toFixed(0)} MiB, peak ${(process.resourceUsage().maxRSS / 1024).toFixed(0)} MiB)`);
 }
